@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
+ SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
 # SPDX-License-Identifier: MIT
 
 # Simple demo of the VL53L0X distance sensor.
@@ -8,14 +8,28 @@ import time
 import busio
 import board
 
+
 import adafruit_vl53l0x
 
 # Initialize I2C bus and sensor.
-i2c1 = busio.I2C(board.GP5, board.GP4)
-vl53_1 = adafruit_vl53l0x.VL53L0X(i2c1)
+sensor1Range = -2.0
+sensor2Range = -2.0
 
-i2c2 = busio.I2C(board.GP7, board.GP6)
-vl53_2 = adafruit_vl53l0x.VL53L0X(i2c2)
+uart = busio.UART(board.GP0, board.GP1, baudrate=115200, bits=8, parity=None )
+    
+print("new version - uart")
+try:
+    i2c1 = busio.I2C(board.GP5, board.GP4)
+    vl53_1 = adafruit_vl53l0x.VL53L0X(i2c1)
+except:
+    print("No 1st sensor connected")
+
+try:
+    i2c2 = busio.I2C(board.GP7, board.GP6)
+    vl53_2 = adafruit_vl53l0x.VL53L0X(i2c2)
+except:
+    print("No 2nd sensor connected")
+    
 
 # Optionally adjust the measurement timing budget to change speed and accuracy.
 # See the example here for more details:
@@ -28,5 +42,18 @@ vl53_2 = adafruit_vl53l0x.VL53L0X(i2c2)
 
 # Main loop will read the range and print it every second.
 while True:
-    print("{0}, {0}".format(vl53_1.range, vl53_2.range))
-    time.sleep(1.0)
+    try:
+        sensor1Range = vl53_1.range
+    except:
+        sensor1Range = -1
+        
+        
+    try:
+        sensor2Range = vl53_2.range
+        
+    except:
+        sensor2Range = -1
+    print("{0}, {1},".format(sensor1Range, sensor2Range))
+    uart.write(bytearray("{0}, {1},\r\n".format(sensor1Range, sensor2Range)))
+
+    time.sleep(0.005)
