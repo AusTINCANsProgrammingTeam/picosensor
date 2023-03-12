@@ -1,4 +1,4 @@
- SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
+# SPDX-FileCopyrightText: 2021 ladyada for Adafruit Industries
 # SPDX-License-Identifier: MIT
 
 # Simple demo of the VL53L0X distance sensor.
