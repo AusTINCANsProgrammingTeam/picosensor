@@ -1,5 +1,6 @@
 # picosensor
-CircuitPython to read distance sensor data on a Raspberry Pi Pico in order to send the data to a roboRIO
+CircuitPython to read distance sensor data on a Raspberry Pi Pico in order to send the data to a roboRIO.
+
 Use Adafruit VL53L0X and VL6180X distance sensors on I2C bus (STEMMA/QT connections)
 
 The roboRIO can provide Ground, 5v, and the communication signal to the device.
