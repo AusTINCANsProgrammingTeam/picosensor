@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 the ausTIN CANs FRC#2158
+# SPDX-FileCopyrightText: 2023 the ausTIN CANs FRC#2158
 # SPDX-License-Identifier: MIT
 
 # Read VL53L0X and VL6180X distance sensors.
