@@ -55,7 +55,7 @@ try:
             range = rangeVL6180
         print(range, light_lux)
         led.value = False
-        time.sleep(1.0)  # Sleep for one second.
+        time.sleep(0.5)  # Sleep for half second.
 except (OSError) as e:
     print("{}. PCA9546A Not found at address 0x70".format(e))
 except (ValueError) as ve:
